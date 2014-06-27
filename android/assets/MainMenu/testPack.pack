@@ -1,0 +1,19 @@
+
+testPack.png
+format: RGBA4444
+filter: Nearest,Nearest
+repeat: none
+off
+  rotate: false
+  xy: 0, 0
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+on
+  rotate: false
+  xy: 250, 0
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
