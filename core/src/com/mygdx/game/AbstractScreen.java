@@ -8,10 +8,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.tools.GameNames;
 
 public abstract class AbstractScreen implements Screen {
 
-    public static final int CAMERA_WIDTH = 600, CAMERA_HEIGHT = 480;
+    public static final int CAMERA_WIDTH = 1000, CAMERA_HEIGHT = 1000;
 
 	protected final StarLightGame game;
 	protected final Stage stage;

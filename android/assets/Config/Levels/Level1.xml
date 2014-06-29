@@ -1,0 +1,18 @@
+<level_config>
+	<description>Description for level 1</description>
+	<camera startX="150" startY="100"/>
+	<ballista posX="100" posY="100">
+		<planet type="1" mass="100"/>
+		<planet type="2" mass="100"/>
+		<planet type="3" mass="100"/>
+	</ballista>
+	<planets>
+		<planet type="1" mass="100" posX="100" posY="100" speedX="0" speedY="5"/>
+	</planets>
+	<stars>
+		<star type="1" mass="2000" posX="200" posY="100"/>
+	</stars>
+	<green_zone>
+		<zone type="1" posX="200" posY="100" rad="50" width="20"/>
+	</green_zone>
+</level_config>
