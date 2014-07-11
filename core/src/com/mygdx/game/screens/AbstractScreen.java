@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.StarLightGame;
-import com.mygdx.game.tools.GameNames;
 
 public abstract class AbstractScreen implements Screen {
 
