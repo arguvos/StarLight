@@ -44,16 +44,16 @@ public class MainMenuScreen extends AbstractScreen {
 
 		skin.add("default", style);
 
-		camera.zoom = 2.f;
+		camera.zoom = 1.f;
 
 		final TextButton startGameButton = new TextButton("Start game", skin);
 
 		startGameButton.addListener(new ChangeListener() {
-			public void changed (ChangeEvent event, Actor actor) {
+            public void changed (ChangeEvent event, Actor actor) {
                 game.setScreen(new GameScreen(game));
-			}
-		});
-		table.add(startGameButton);
+            }
+        });
+        table.add(startGameButton);
 	}
 
 	@Override
