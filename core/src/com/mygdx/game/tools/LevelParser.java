@@ -26,9 +26,10 @@ public class LevelParser {
 			levelInfo.cameraY = Integer.valueOf(root.getChildByName("camera").getAttribute("startY"));
 
 			XmlReader.Element bElement = root.getChildByName("ballista");
-			Ballista ballista = new Ballista();
+			Ballista ballista = new Ballista(Integer.parseInt(bElement.getAttribute("type")));
 			ballista.setPosition(Float.parseFloat(bElement.getAttribute("posX")),
 					Float.parseFloat(bElement.getAttribute("posY")));
+
 			for (int i = 0; i < bElement.getChildCount(); ++i) {
                 XmlReader.Element pElement = bElement.getChild(i);
                 Planet planet = new Planet(

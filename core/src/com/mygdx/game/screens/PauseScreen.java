@@ -1,30 +1,21 @@
-package com.mygdx.game;
+package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.game.StarLightGame;
 
 
 /**
  * Created by Vasek on 25.06.2014.
  */
-public class ResultScreen extends AbstractScreen {
+public class PauseScreen extends AbstractScreen {
 
-    private int score, bestScore;
-
-    public ResultScreen(StarLightGame game, int score, int bestScore) {
+    public PauseScreen(StarLightGame game) {
         super(game);
     }
 
@@ -33,29 +24,16 @@ public class ResultScreen extends AbstractScreen {
         super.show();
         Gdx.input.setInputProcessor(stage);
         Skin skin = new Skin(Gdx.files.internal("Menu/uiskin.json"));
-
         Table table = new Table();
         table.setFillParent(true);
         table.center();
-        Label textTitle = new Label("Result", skin);
-        table.add(textTitle);
+        Label title = new Label("Pause:", skin);
+        table.add(title);
         table.row();
-        Label textYourScore = new Label("Your Score:", skin);
-        table.add(textYourScore);
-        table.row();
-        Label textNumbYourScore = new Label(Integer.toString(score), skin);
-        table.add(textNumbYourScore);
-        table.row();
-        Label textBestScore = new Label("Best Score:", skin);
-        table.add(textBestScore);
-        table.row();
-        Label textNumbBestScore = new Label(Integer.toString(bestScore), skin);
-        table.add(textNumbBestScore);
-        table.row();
-        TextButton btnRestart = new TextButton("Restart", skin);
-        btnRestart.addListener(new ChangeListener() {
+        TextButton btnContinue = new TextButton("Continue", skin);
+        btnContinue.addListener(new ChangeListener() {
             public void changed (ChangeEvent event, Actor actor) {
-                System.out.println("Pressed btnRestart");
+                System.out.println("Pressed btnContinue");
             }
         });
         TextButton btnExitToMenu = new TextButton("Exit to Menu", skin);
@@ -64,7 +42,7 @@ public class ResultScreen extends AbstractScreen {
                 System.out.println("Pressed btnExitToMenu");
             }
         });
-        table.add(btnRestart);
+        table.add(btnContinue);
         table.row();
         table.add(btnExitToMenu);
         stage.addActor(table);

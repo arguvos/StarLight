@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.mygdx.game.screens.MainMenuScreen;
 
 /**
  * Created by Leo on 25.06.2014.

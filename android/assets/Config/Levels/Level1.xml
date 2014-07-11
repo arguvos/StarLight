@@ -1,7 +1,7 @@
 <level_config>
 	<description>Description for level 1</description>
 	<camera startX="150" startY="100"/>
-	<ballista posX="100" posY="100">
+	<ballista posX="100" posY="100" type="1">
 		<planet type="1" mass="100"/>
 		<planet type="2" mass="100"/>
 		<planet type="3" mass="100"/>

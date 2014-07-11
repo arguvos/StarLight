@@ -1,17 +1,14 @@
-package com.mygdx.game;
+package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.mygdx.game.StarLightGame;
 
 /**
  * Created by Leo on 25.06.2014.
@@ -31,7 +28,7 @@ public class MainMenuScreen extends AbstractScreen {
 
 		table = new Table();
 		table.setFillParent(true);
-        table.center();
+		table.center();
 		stage.addActor(table);
 
 		atlas = new TextureAtlas("MainMenu/testPack.pack");
@@ -47,14 +44,16 @@ public class MainMenuScreen extends AbstractScreen {
 
 		skin.add("default", style);
 
+		camera.zoom = 2.f;
+
 		final TextButton startGameButton = new TextButton("Start game", skin);
 
 		startGameButton.addListener(new ChangeListener() {
-            public void changed (ChangeEvent event, Actor actor) {
-                Gdx.app.log("startGameButton", "changed");
-            }
-        });
-        table.add(startGameButton);
+			public void changed (ChangeEvent event, Actor actor) {
+                game.setScreen(new GameScreen(game));
+			}
+		});
+		table.add(startGameButton);
 	}
 
 	@Override
