@@ -24,6 +24,7 @@ public class GameScreen extends AbstractScreen {
 
 	public GameScreen(StarLightGame game) {
 		super(game);
+		super.addBtnPause();
 	}
 
 	@Override
