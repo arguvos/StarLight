@@ -22,16 +22,13 @@ public class GameScreen extends AbstractScreen {
 	private StarGestureListener starGestureListener;
 	private StarInputProcessor starInputProcessor;
 
-    private int levelNumber;
-
-	public GameScreen(StarLightGame game) {
+	private int levelNumber;
+	
+	public GameScreen(StarLightGame game, int levelNumber) {
 		super(game);
+		this.levelNumber = levelNumber;
 		super.addBtnPause();
 	}
-    public GameScreen(StarLightGame game, int levelNumber) {
-        super(game);
-        this.levelNumber = levelNumber;
-    }
 
 	@Override
 	public void show() {
@@ -40,7 +37,7 @@ public class GameScreen extends AbstractScreen {
 
 		levelParser = new LevelParser();
 		levelInfo = levelParser.getLevelInfo(1);
-        levelInfo.setLevelNumber(levelNumber);
+		levelInfo.setLevelNumber(levelNumber);
 		levelBuilder = new LevelBuilder();
 		levelBuilder.buildLevel(levelInfo, stage);
 	}
