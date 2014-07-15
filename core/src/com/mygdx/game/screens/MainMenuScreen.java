@@ -50,7 +50,8 @@ public class MainMenuScreen extends AbstractScreen {
 
 		startGameButton.addListener(new ChangeListener() {
             public void changed (ChangeEvent event, Actor actor) {
-                game.setScreen(new GameScreen(game));
+                Gdx.app.log("startGameButton", "changed");
+                game.setScreen(new LevelSelectScreen(game,30,2));
             }
         });
         table.add(startGameButton);

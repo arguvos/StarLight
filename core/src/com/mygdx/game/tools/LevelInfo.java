@@ -16,6 +16,7 @@ public class LevelInfo {
     ArrayList<GZone> zones;
     Ballista ballista;
     String description;
+    int levelNumber;
 
     int cameraX;
     int cameraY;
@@ -94,4 +95,8 @@ public class LevelInfo {
     public void addZone(GZone zone) {
         this.zones.add(zone);
     }
+
+    public void setLevelNumber(int levelNumber) {this.levelNumber = levelNumber;}
+
+    public int  getLevelNumber() { return levelNumber;}
 }
