@@ -34,6 +34,34 @@ public class Star extends Actor {
         this.type = type;
 		this.texture = new Texture(Gdx.files.internal(GameNames.StarPath.replace("$", String.valueOf(type))));
     }
+    public float getR()
+    {
+        if(super.getHeight()>=super.getWidth())
+        {
+            return super.getHeight()/2;
+        }
+        else
+        {
+            return super.getWidth()/2;
+        }
+    }
+    public void setR(float r)
+    {
+        super.setWidth(r*2);
+        super.setHeight(r*2);
+    }
+
+    @Deprecated @Override
+    public void setHeight(float height)
+    {
+        super.setHeight(height);
+    }
+
+    @Deprecated @Override
+    public void setWidth(float width)
+    {
+        super.setWidth(width);
+    }
 
 	@Override
 	public void draw(Batch batch, float alpha){

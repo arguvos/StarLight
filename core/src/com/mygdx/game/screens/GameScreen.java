@@ -26,6 +26,7 @@ public class GameScreen extends AbstractScreen {
 
 	public GameScreen(StarLightGame game) {
 		super(game);
+		super.addBtnPause();
 	}
     public GameScreen(StarLightGame game, int levelNumber) {
         super(game);
