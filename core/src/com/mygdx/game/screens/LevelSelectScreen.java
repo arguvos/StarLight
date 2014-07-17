@@ -42,6 +42,22 @@ public class LevelSelectScreen extends AbstractScreen {
         this.tablesAmount = tablesAmount;
     }
 
+    public int getLevelsAmount() {
+        return levelsAmount;
+    }
+
+    public void setLevelsAmount(int levelsAmount) {
+        this.levelsAmount = levelsAmount;
+    }
+
+    public int getTablesAmount() {
+        return tablesAmount;
+    }
+
+    public void setTablesAmount(int tablesAmount) {
+        this.tablesAmount = tablesAmount;
+    }
+
     @Override
     public void show() {
         super.show();
@@ -73,7 +89,11 @@ public class LevelSelectScreen extends AbstractScreen {
                 levels[currentLevel] = new TextButton(String.valueOf(currentLevel + 1), skin);
                 levels[currentLevel].addListener(new ChangeListener() {
                     public void changed(ChangeEvent event, Actor actor) {
-                        game.setScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
+                       // game.setScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
+                        System.err.println("level=" + Integer.valueOf(((TextButton) actor).getText().toString()));
+                        game.setGameScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
+                        game.setGameState(StarLightGame.GameState.GAME_SCREEN);
+                        game.setScreen(game.getGameScreen());
                     }
                 });
                 table.add(levels[currentLevel]).fill().pad(10).width(h).height(h);
@@ -88,7 +108,11 @@ public class LevelSelectScreen extends AbstractScreen {
             levels[currentLevel] = new TextButton(String.valueOf(currentLevel + 1), skin);
             levels[currentLevel].addListener(new ChangeListener() {
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.setScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
+                   // game.setScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
+                    System.err.println("level=" + Integer.valueOf(((TextButton) actor).getText().toString()));
+                    game.setGameScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
+                    game.setGameState(StarLightGame.GameState.GAME_SCREEN);
+                    game.setScreen(game.getGameScreen());
                 }
             });
             table.add(levels[currentLevel]).fill().pad(10).width(h).height(h);

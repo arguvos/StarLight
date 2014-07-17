@@ -34,12 +34,17 @@ public class PauseScreen extends AbstractScreen {
         btnContinue.addListener(new ChangeListener() {
             public void changed (ChangeEvent event, Actor actor) {
                 System.out.println("Pressed btnContinue");
+                game.setGameState(StarLightGame.GameState.GAME_SCREEN);
+                game.setScreen(game.getGameScreen());
+
             }
         });
         TextButton btnExitToMenu = new TextButton("Exit to Menu", skin);
         btnExitToMenu.addListener(new ChangeListener() {
             public void changed (ChangeEvent event, Actor actor) {
                 System.out.println("Pressed btnExitToMenu");
+                game.setGameState(StarLightGame.GameState.MAIN_MENU_SCREEN);
+                game.setScreen(game.getMainMenu());
             }
         });
         table.add(btnContinue);

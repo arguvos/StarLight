@@ -1,0 +1,27 @@
+
+Resources.png
+size: 854,904
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ballista1
+  rotate: false
+  xy: 804, 854
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+planet1
+  rotate: false
+  xy: 2, 104
+  size: 800, 800
+  orig: 800, 800
+  offset: 0, 0
+  index: -1
+sun1
+  rotate: false
+  xy: 2, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1

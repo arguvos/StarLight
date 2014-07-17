@@ -14,68 +14,76 @@ import com.mygdx.game.tools.LevelParser;
 
 public class GameScreen extends AbstractScreen {
 
-	private LevelParser levelParser;
-	private LevelInfo levelInfo;
-	private LevelBuilder levelBuilder;
+    private LevelParser levelParser;
+    private LevelInfo levelInfo;
+    private LevelBuilder levelBuilder;
 
-	private InputMultiplexer inputMultiplexer;
-	private StarGestureListener starGestureListener;
-	private StarInputProcessor starInputProcessor;
+    private InputMultiplexer inputMultiplexer;
+    private StarGestureListener starGestureListener;
+    private StarInputProcessor starInputProcessor;
 
-	private int levelNumber;
-	
-	public GameScreen(StarLightGame game, int levelNumber) {
-		super(game);
-		this.levelNumber = levelNumber;
-		super.addBtnPause();
-	}
+    private int levelNumber;
 
-	@Override
-	public void show() {
-		super.show();
-		initaliseInputProcessors();
+    public GameScreen(StarLightGame game, int levelNumber) {
+        super(game);
+        this.levelNumber = levelNumber;
+        super.addBtnPause();
+    }
 
-		levelParser = new LevelParser();
-		levelInfo = levelParser.getLevelInfo(1);
-		levelInfo.setLevelNumber(levelNumber);
-		levelBuilder = new LevelBuilder();
-		levelBuilder.buildLevel(levelInfo, stage);
-	}
+    public int getLevelNumber() {
+        return levelNumber;
+    }
 
-	public void initaliseInputProcessors() {
-		inputMultiplexer = new InputMultiplexer();
+    public void setLevelNumber(int levelNumber) {
+        this.levelNumber = levelNumber;
+    }
 
-		Gdx.input.setInputProcessor(inputMultiplexer);
-		starGestureListener = new StarGestureListener(this.camera);
-		starInputProcessor = new StarInputProcessor(this.camera);
-		inputMultiplexer.addProcessor(new GestureDetector(starGestureListener));
-		inputMultiplexer.addProcessor(starInputProcessor);
-		inputMultiplexer.addProcessor(stage);
-	}
+    @Override
+    public void show() {
+        super.show();
+        initaliseInputProcessors();
 
-	@Override
-	public void dispose() {
-		super.dispose();
-	}
+        levelParser = new LevelParser();
+        levelInfo = levelParser.getLevelInfo(1);
+        levelInfo.setLevelNumber(levelNumber);
+        levelBuilder = new LevelBuilder();
+        levelBuilder.buildLevel(levelInfo, stage);
+    }
 
-	@Override
-	public void render(float delta) {
-		super.render(delta);
-		camera.zoom = ValuesContainer.zoom;
-	}
+    public void initaliseInputProcessors() {
+        inputMultiplexer = new InputMultiplexer();
 
-	@Override
-	public void resize(int width, int height) {
-		super.resize(width, height);
-	}
+        Gdx.input.setInputProcessor(inputMultiplexer);
+        starGestureListener = new StarGestureListener(this.camera);
+        starInputProcessor = new StarInputProcessor(this.camera);
+        inputMultiplexer.addProcessor(new GestureDetector(starGestureListener));
+        inputMultiplexer.addProcessor(starInputProcessor);
+        inputMultiplexer.addProcessor(stage);
+    }
 
-	@Override
-	public void pause() {
-		super.pause();
-	}
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
 
-	@Override
-	public void resume() {
-		super.resume();
-	}
+    @Override
+    public void render(float delta) {
+        super.render(delta);
+        camera.zoom = ValuesContainer.zoom;
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+    }
+
+    @Override
+    public void pause() {
+        super.pause();
+    }
+
+    @Override
+    public void resume() {
+        super.resume();
+    }
 }
