@@ -1,0 +1,27 @@
+
+MainMenu.png
+size: 510,480
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+btn_play_off
+  rotate: false
+  xy: 260, 232
+  size: 250, 248
+  orig: 250, 248
+  offset: 0, 0
+  index: -1
+btn_play_on
+  rotate: false
+  xy: 2, 2
+  size: 220, 220
+  orig: 220, 220
+  offset: 0, 0
+  index: -1
+font
+  rotate: false
+  xy: 2, 224
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1

@@ -60,10 +60,12 @@ public class LevelSelectScreen extends AbstractScreen implements GestureDetector
         this.skin = new Skin(Gdx.files.internal("Menu/uiskin.json"));
     }
 
+
     private int fillTable(double H, double W, int currentLevel, int currentTableLevelsNumber, Table table)
     {
         int prefixLevel = currentLevel;
         currentLevel = 0;
+
         for (int i = 0; i < H ; i++) {
             for (int j = 0; j < W ; j++) {
 
@@ -73,26 +75,34 @@ public class LevelSelectScreen extends AbstractScreen implements GestureDetector
                 levels[currentLevel] = new TextButton(String.valueOf(currentLevel + 1 + prefixLevel), skin);
                 levels[currentLevel].addListener(new ChangeListener() {
                     public void changed(ChangeEvent event, Actor actor) {
-                        if(isTapble) game.setScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
+                        if(isTapble) {
+                            // game.setScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
+                            System.err.println("level=" + Integer.valueOf(((TextButton) actor).getText().toString()));
+                            game.setGameScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
+                            game.setGameState(StarLightGame.GameState.GAME_SCREEN);
+                            game.setScreen(game.getGameScreen());
+                        }
                     }
                 });
                 table.add(levels[currentLevel]).fill().pad(10).width(h).height(h);
             }
             table.row();
-
-
         }
-
 
         for (currentLevel++; currentLevel < currentTableLevelsNumber; currentLevel++) {
             levels[currentLevel] = new TextButton(String.valueOf(currentLevel + 1), skin);
             levels[currentLevel].addListener(new ChangeListener() {
                 public void changed(ChangeEvent event, Actor actor) {
-                    if(isTapble) game.setScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
-                }
-            });
-            table.add(levels[currentLevel]).fill().pad(10).width(h).height(h);
+                    if(isTapble) {
+                        System.err.println("level=" + Integer.valueOf(((TextButton) actor).getText().toString()));
+                        game.setGameScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
+                        game.setGameState(StarLightGame.GameState.GAME_SCREEN);
+                        game.setScreen(game.getGameScreen());
+                    }
 
+            }});
+
+                    table.add(levels[currentLevel]).fill().pad(10).width(h).height(h);
         }
 
         return currentLevel+prefixLevel;
@@ -144,9 +154,6 @@ public class LevelSelectScreen extends AbstractScreen implements GestureDetector
             stage.addActor(tables[i]);
         }
         stage.addActor(bottomTable);
-
-
-
 
     }
 

@@ -47,13 +47,13 @@ public class ResultScreen extends AbstractScreen {
         table.row();
         TextButton btnRestart = new TextButton("Restart", skin);
         btnRestart.addListener(new ChangeListener() {
-            public void changed (ChangeEvent event, Actor actor) {
+            public void changed(ChangeEvent event, Actor actor) {
                 System.out.println("Pressed btnRestart");
             }
         });
         TextButton btnExitToMenu = new TextButton("Exit to Menu", skin);
         btnExitToMenu.addListener(new ChangeListener() {
-            public void changed (ChangeEvent event, Actor actor) {
+            public void changed(ChangeEvent event, Actor actor) {
                 System.out.println("Pressed btnExitToMenu");
             }
         });
