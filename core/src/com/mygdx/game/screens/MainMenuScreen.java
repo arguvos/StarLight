@@ -36,7 +36,7 @@ public class MainMenuScreen extends AbstractScreen {
 		btnPlay.addListener(new ChangeListener() {
 		    public void changed (ChangeEvent event, Actor actor) {
 			System.out.println("Pressed btnPlay");
-			game.setScreen(new LevelSelectScreen(game,30,2));
+			game.setScreen(new LevelSelectScreen(game,45,3));
 		    }
 		});        
 		table.add(btnPlay);

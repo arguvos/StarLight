@@ -91,7 +91,7 @@ public abstract class AbstractScreen implements Screen {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		System.out.println("NEW CAM ZOOM:"+Float.toString(camera.zoom));
+		//System.out.println("NEW CAM ZOOM:"+Float.toString(camera.zoom));
 		for (int i=0; i<stage.getActors().size; i++){
 			if (stage.getActors().get(i).getName()=="SETTING"){
 				stage.getActors().get(i).setPosition((camera.position.x-defPosX)-defPosX*(camera.zoom-1), (camera.position.y-defPosY)-defPosY*(camera.zoom-1));
