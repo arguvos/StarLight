@@ -6,6 +6,7 @@ import com.mygdx.game.screens.LevelSelectScreen;
 import com.mygdx.game.screens.MainMenuScreen;
 import com.mygdx.game.screens.PauseScreen;
 import com.mygdx.game.screens.ResultScreen;
+import com.mygdx.game.tools.GameValues;
 
 /**
  * Created by Leo on 25.06.2014.
@@ -23,15 +24,12 @@ public class StarLightGame extends Game {
 
     @Override
     public void create() {
-        mainMenu = new MainMenuScreen(this);
-        gameScreen = new GameScreen(this, 1);
-        levelSelectScreen = new LevelSelectScreen(this, 30, 2);
-        pauseScreen = new PauseScreen(this);
-        resultScreen = new ResultScreen(this, 1, 2);
+		setMainMenu(new MainMenuScreen(this));
+		setLevelSelectScreen(new LevelSelectScreen(this, GameValues.LevelSelectCount, GameValues.LevelSelectTabels));
+		setPauseScreen(new PauseScreen(this));
         gameState = GameState.MAIN_MENU_SCREEN;
         setScreen(mainMenu);
     }
-
 
     public MainMenuScreen getMainMenu() {
         return mainMenu;
@@ -80,6 +78,4 @@ public class StarLightGame extends Game {
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
     }
-
-
 }

@@ -61,7 +61,7 @@ public class LevelSelectScreen extends AbstractScreen {
     @Override
     public void show() {
         super.show();
-        initaliseInputProcessors();
+//        initaliseInputProcessors();
 
         //Gdx.input.setInputProcessor(stage);
         Skin skin = new Skin(Gdx.files.internal("Menu/uiskin.json"));
@@ -99,10 +99,7 @@ public class LevelSelectScreen extends AbstractScreen {
                 table.add(levels[currentLevel]).fill().pad(10).width(h).height(h);
             }
             table.row();
-
-
         }
-
 
         for (currentLevel++; currentLevel < currentTableLevelsNumber; currentLevel++) {
             levels[currentLevel] = new TextButton(String.valueOf(currentLevel + 1), skin);

@@ -3,6 +3,7 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.input.GestureDetector;
+import com.mygdx.game.GameWorld;
 import com.mygdx.game.StarLightGame;
 import com.mygdx.game.input.StarGestureListener;
 import com.mygdx.game.input.StarInputProcessor;
@@ -24,6 +25,8 @@ public class GameScreen extends AbstractScreen {
 
     private int levelNumber;
 
+	private GameWorld gameWorld;
+
     public GameScreen(StarLightGame game, int levelNumber) {
         super(game);
         this.levelNumber = levelNumber;
@@ -41,21 +44,23 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void show() {
         super.show();
-        initaliseInputProcessors();
+
+		gameWorld = new GameWorld();
+		initaliseInputProcessors();
 
         levelParser = new LevelParser();
         levelInfo = levelParser.getLevelInfo(1);
         levelInfo.setLevelNumber(levelNumber);
         levelBuilder = new LevelBuilder();
-        levelBuilder.buildLevel(levelInfo, stage);
+        levelBuilder.buildLevel(levelInfo, gameWorld.getStage());
     }
 
     public void initaliseInputProcessors() {
         inputMultiplexer = new InputMultiplexer();
 
         Gdx.input.setInputProcessor(inputMultiplexer);
-        starGestureListener = new StarGestureListener(this.camera);
-        starInputProcessor = new StarInputProcessor(this.camera);
+        starGestureListener = new StarGestureListener(gameWorld.getCamera());
+        starInputProcessor = new StarInputProcessor(gameWorld.getCamera());
         inputMultiplexer.addProcessor(new GestureDetector(starGestureListener));
         inputMultiplexer.addProcessor(starInputProcessor);
         inputMultiplexer.addProcessor(stage);
@@ -69,7 +74,8 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-        camera.zoom = ValuesContainer.zoom;
+		gameWorld.getCamera().zoom = ValuesContainer.zoom;
+		gameWorld.render(delta);
     }
 
     @Override
