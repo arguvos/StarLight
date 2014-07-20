@@ -24,14 +24,13 @@ public class StarLightGame extends Game {
 
     @Override
     public void create() {
-		setMainMenu(new MainMenuScreen(this));
-		setLevelSelectScreen(new LevelSelectScreen(this, GameValues.LevelSelectCount, GameValues.LevelSelectTabels));
-		setPauseScreen(new PauseScreen(this));
         gameState = GameState.MAIN_MENU_SCREEN;
-        setScreen(mainMenu);
+        setScreen(getMainMenu());
     }
 
     public MainMenuScreen getMainMenu() {
+		if(mainMenu == null)
+			setMainMenu(new MainMenuScreen(this));
         return mainMenu;
     }
 
@@ -48,6 +47,8 @@ public class StarLightGame extends Game {
     }
 
     public LevelSelectScreen getLevelSelectScreen() {
+		if(levelSelectScreen == null)
+			setLevelSelectScreen(new LevelSelectScreen(this, GameValues.LevelSelectCount, GameValues.LevelSelectTabels));
         return levelSelectScreen;
     }
 
@@ -56,6 +57,8 @@ public class StarLightGame extends Game {
     }
 
     public PauseScreen getPauseScreen() {
+		if(pauseScreen == null)
+			setPauseScreen(new PauseScreen(this));
         return pauseScreen;
     }
 

@@ -10,12 +10,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
  */
 public class StarInputProcessor implements InputProcessor {
 
-	private OrthographicCamera camera;
-
-	public StarInputProcessor(OrthographicCamera camera) {
-		this.camera = camera;
-	}
-
 	@Override
 	public boolean keyDown(int keycode) {
 		return false;
@@ -53,16 +47,12 @@ public class StarInputProcessor implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		Gdx.app.log("Scrolled", String.valueOf(amount));
 		if (amount > 0) {
 			ValuesContainer.zoom += 0.1f;
 		}
 		if (amount < 0) {
 			ValuesContainer.zoom -= 0.1f;
 		}
-		camera.update();
-
 		return false;
 	}
-
 }

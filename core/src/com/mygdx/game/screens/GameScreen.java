@@ -60,7 +60,7 @@ public class GameScreen extends AbstractScreen {
 
         Gdx.input.setInputProcessor(inputMultiplexer);
         starGestureListener = new StarGestureListener(gameWorld.getCamera());
-        starInputProcessor = new StarInputProcessor(gameWorld.getCamera());
+        starInputProcessor = new StarInputProcessor();
         inputMultiplexer.addProcessor(new GestureDetector(starGestureListener));
         inputMultiplexer.addProcessor(starInputProcessor);
         inputMultiplexer.addProcessor(stage);

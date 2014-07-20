@@ -161,7 +161,7 @@ public class LevelSelectScreen extends AbstractScreen implements GestureDetector
         inputMultiplexer = new InputMultiplexer();
 
         Gdx.input.setInputProcessor(inputMultiplexer);
-        starInputProcessor = new StarInputProcessor(this.camera);
+        starInputProcessor = new StarInputProcessor();
         inputMultiplexer.addProcessor(new GestureDetector(this));
         inputMultiplexer.addProcessor(starInputProcessor);
         inputMultiplexer.addProcessor(stage);
