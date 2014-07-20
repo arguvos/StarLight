@@ -1,6 +1,7 @@
 package com.mygdx.game.tools;
 
 import com.mygdx.game.actors.Ballista;
+import com.mygdx.game.actors.Block;
 import com.mygdx.game.actors.GZone;
 import com.mygdx.game.actors.Planet;
 import com.mygdx.game.actors.Star;
@@ -21,12 +22,32 @@ public class LevelInfo {
     int cameraX;
     int cameraY;
 
+	private int[][] levelArray;
+	private ArrayList<Block> blocks;
+
     public LevelInfo() {
-        planets = new ArrayList<Planet>();
-        stars = new ArrayList<Star>();
-        zones = new ArrayList<GZone>();
-        ballista = new Ballista();
+//        planets = new ArrayList<Planet>();
+//        stars = new ArrayList<Star>();
+//        zones = new ArrayList<GZone>();
+//        ballista = new Ballista();
+		blocks = new ArrayList<Block>();
     }
+
+	public ArrayList<Block> getBlocks() {
+		return blocks;
+	}
+
+	public void setBlocks(ArrayList<Block> blocks) {
+		this.blocks = blocks;
+	}
+
+	public void addBlock(Block block) {
+		this.blocks.add(block);
+	}
+
+	public void setLevelArray(int[][] levelArray) { this.levelArray = levelArray; }
+
+	public int[][] getLevelArray() { return levelArray; }
 
     public int getCameraX() {
         return cameraX;

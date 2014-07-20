@@ -7,4 +7,7 @@ package com.mygdx.game.tools;
 public class GameValues {
 	public static final int LevelSelectCount = 45;
 	public static final int LevelSelectTabels = 3;
+
+	//LevelBuild
+	public static final int BlockDistance = 110;
 }

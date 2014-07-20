@@ -5,7 +5,9 @@ package com.mygdx.game.tools;
  */
 public class GameNames {
     public static final String LevelXmlPath = "Config/Levels/Level$.xml";
+	public static final String LevelTxtPath = "Config/Levels/Level$.txt";
 	public static final String BallistaPath = "Resources/ballista$.png";
 	public static final String StarPath = "Resources/sun$.png";
 	public static final String PlanetPath = "Resources/planet$.png";
+	public static final String BlockPath = "Resources/block$.png";
 }

@@ -2,6 +2,7 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.input.GestureDetector;
 import com.mygdx.game.GameWorld;
 import com.mygdx.game.StarLightGame;
@@ -49,7 +50,7 @@ public class GameScreen extends AbstractScreen {
 		initaliseInputProcessors();
 
         levelParser = new LevelParser();
-        levelInfo = levelParser.getLevelInfo(1);
+        levelInfo = levelParser.getLevelInfo2(1);
         levelInfo.setLevelNumber(levelNumber);
         levelBuilder = new LevelBuilder();
         levelBuilder.buildLevel(levelInfo, gameWorld.getStage());
@@ -73,9 +74,13 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void render(float delta) {
-        super.render(delta);
+		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gameWorld.getCamera().zoom = ValuesContainer.zoom;
 		gameWorld.render(delta);
+
+		//draw gui after game world
+		super.renderWithClean(delta, false);
     }
 
     @Override

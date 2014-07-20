@@ -94,24 +94,30 @@ public abstract class AbstractScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //System.out.println("NEW CAM ZOOM:"+Float.toString(camera.zoom));
-        for (int i = 0; i < stage.getActors().size; i++) {
-            if (stage.getActors().get(i).getName() == "SETTING") {
-                stage.getActors().get(i).setPosition((camera.position.x - defPosX) - defPosX * (camera.zoom - 1), (camera.position.y - defPosY) - defPosY * (camera.zoom - 1));
-                stage.getActors().get(i).setScale(camera.zoom);
-            }
-        }
-        stage.act(delta);
-        batch.setProjectionMatrix(camera.view);
-        batch.begin();
-        stage.draw();
-        batch.end();
-        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
-            System.err.println("menu");
-        }
+		renderWithClean(delta, true);
     }
+
+	protected void renderWithClean(float delta, boolean clean) {
+		if(clean) {
+			Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
+			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		}
+		//System.out.println("NEW CAM ZOOM:"+Float.toString(camera.zoom));
+		for (int i = 0; i < stage.getActors().size; i++) {
+			if (stage.getActors().get(i).getName() == "SETTING") {
+				stage.getActors().get(i).setPosition((camera.position.x - defPosX) - defPosX * (camera.zoom - 1), (camera.position.y - defPosY) - defPosY * (camera.zoom - 1));
+				stage.getActors().get(i).setScale(camera.zoom);
+			}
+		}
+		stage.act(delta);
+		batch.setProjectionMatrix(camera.view);
+		batch.begin();
+		stage.draw();
+		batch.end();
+		if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+			System.err.println("menu");
+		}
+	}
 
     @Override
     public void hide() {

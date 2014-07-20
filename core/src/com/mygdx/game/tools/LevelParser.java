@@ -1,6 +1,7 @@
 package com.mygdx.game.tools;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.XmlReader;
@@ -91,5 +92,23 @@ public class LevelParser {
 		}
 
         return null;
+	}
+
+	public LevelInfo getLevelInfo2(int level) {
+		FileHandle file = Gdx.files.internal(GameNames.LevelTxtPath
+				.replace("$", String.valueOf(level)));
+		String text = file.readString();
+		String[] line = text.split("\r\n");
+		int w = line[0].length();
+		int h = line.length;
+		int[][] levelArray = new int[w][h];
+		for(int j = 0; j < h; j++)
+			for(int i = 0; i < w; i++)
+				levelArray[i][j] = line[j].charAt(i) - '0';
+
+		LevelInfo levelInfo = new LevelInfo();
+		levelInfo.setLevelArray(levelArray);
+
+		return levelInfo;
 	}
 }

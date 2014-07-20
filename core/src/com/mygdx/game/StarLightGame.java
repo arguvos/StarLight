@@ -26,6 +26,7 @@ public class StarLightGame extends Game {
     public void create() {
         gameState = GameState.MAIN_MENU_SCREEN;
         setScreen(getMainMenu());
+//		setScreen(getGameScreen());
     }
 
     public MainMenuScreen getMainMenu() {
@@ -39,6 +40,8 @@ public class StarLightGame extends Game {
     }
 
     public GameScreen getGameScreen() {
+		if(gameScreen == null)
+			gameScreen = new GameScreen(this, 1);
         return gameScreen;
     }
 
