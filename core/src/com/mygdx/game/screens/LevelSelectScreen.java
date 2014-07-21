@@ -22,32 +22,37 @@ public class LevelSelectScreen extends AbstractScreen implements GestureDetector
 
     private InputMultiplexer inputMultiplexer;
     private StarInputProcessor starInputProcessor;
-
-
-    private TextureAtlas atlas;
     private Table tables[];
     private Table bottomTable;
     private Label bottomLables[];
+    private TextButton levels[];
+    private Skin skin;
+
     private int levelsAmount;
     private int tablesAmount;
-    private int h;
+    private int h; //level button height and width
+    private int currentTableLevelsNumber;
+    private int currentSection = 1;
+    private int speed = 300;
+    private int stopOffset = 2;
+    private int levelButtonDistance = 10;
+    private int bottomTableItemDistance = 5;
+
     private float amountX = 0;
     private float tableDistance = 150;
     private float changeOffset = 150;
     private float overscrollDistance = 100;
-    private int currentSection = 1;
-    private int speed = 300;
-    private int stopOffset = 2;
+
     private boolean isPan = false;
     private boolean isTapble = true;
     private boolean isRecoverForcibly = false;
     private boolean isTableChange = false;
 
-    TextButton levels[];
-    Skin skin;
 
     private static final float TABLE_HEIGHT = CAMERA_HEIGHT / 5;
     private static final float TABLE_WIDTH = CAMERA_WIDTH / 1;
+    private static final float BOTTOM_TABLE_WIDTH = 75;
+    private static final float BOTTOM_TABLE_HEIGHT = 10;
     private final float TABLE_DISTANCE = TABLE_WIDTH + tableDistance;
 
 
@@ -58,6 +63,44 @@ public class LevelSelectScreen extends AbstractScreen implements GestureDetector
         this.tables = new Table[tablesAmount];
         this.levels = new TextButton[levelsAmount];
         this.skin = new Skin(Gdx.files.internal("Menu/uiskin.json"));
+
+        for (int i = 0; i < tablesAmount; i++) {
+            tables[i] = new Table();
+            tables[i].setFillParent(true);
+            tables[i].setHeight(TABLE_HEIGHT);
+            tables[i].setWidth(TABLE_WIDTH);
+            tables[i].center();
+            tables[i].setX(i*TABLE_DISTANCE);
+        }
+
+        currentTableLevelsNumber =  (int) Math.ceil(levelsAmount / tablesAmount);
+        h = (int)Math.floor(Math.sqrt(TABLE_HEIGHT * TABLE_WIDTH / currentTableLevelsNumber));
+        double H = Math.ceil(TABLE_HEIGHT/h) + ((TABLE_HEIGHT % h == 0) ? 0 : 1);
+        double W = currentTableLevelsNumber/H;
+        int currentLevel = 0;
+
+        for (int i = 0; i < tablesAmount; i++) {
+            currentLevel = fillTable(H,W,currentLevel,currentTableLevelsNumber,tables[i]);
+        }
+
+
+        bottomTable = new Table();
+        bottomLables = new Label[tablesAmount];
+        bottomTable.setFillParent(true);
+        for (int i = 0; i < tablesAmount; i++) {
+            if(i == 0) bottomLables[i] = new Label("o", skin);
+            else bottomLables[i] = new Label(".", skin);
+            bottomTable.add(bottomLables[i]).pad(bottomTableItemDistance);
+        }
+        bottomTable.setWidth(BOTTOM_TABLE_WIDTH);
+        bottomTable.setHeight(BOTTOM_TABLE_HEIGHT);
+        bottomTable.center().bottom();
+
+
+        for (int i = 0; i < tablesAmount; i++) {
+            stage.addActor(tables[i]);
+        }
+        stage.addActor(bottomTable);
     }
 
 
@@ -76,7 +119,6 @@ public class LevelSelectScreen extends AbstractScreen implements GestureDetector
                 levels[currentLevel].addListener(new ChangeListener() {
                     public void changed(ChangeEvent event, Actor actor) {
                         if(isTapble) {
-                            // game.setScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
                             System.err.println("level=" + Integer.valueOf(((TextButton) actor).getText().toString()));
                             game.setGameScreen(new GameScreen(game, Integer.valueOf(((TextButton) actor).getText().toString())));
                             game.setGameState(StarLightGame.GameState.GAME_SCREEN);
@@ -84,7 +126,7 @@ public class LevelSelectScreen extends AbstractScreen implements GestureDetector
                         }
                     }
                 });
-                table.add(levels[currentLevel]).fill().pad(10).width(h).height(h);
+                table.add(levels[currentLevel]).fill().pad(levelButtonDistance).width(h).height(h);
             }
             table.row();
         }
@@ -102,7 +144,7 @@ public class LevelSelectScreen extends AbstractScreen implements GestureDetector
 
             }});
 
-                    table.add(levels[currentLevel]).fill().pad(10).width(h).height(h);
+                    table.add(levels[currentLevel]).fill().pad(levelButtonDistance).width(h).height(h);
         }
 
         return currentLevel+prefixLevel;
@@ -114,46 +156,6 @@ public class LevelSelectScreen extends AbstractScreen implements GestureDetector
     public void show() {
         super.show();
         initaliseInputProcessors();
-
-        for (int i = 0; i < tablesAmount; i++) {
-            tables[i] = new Table();
-            tables[i].setFillParent(true);
-            tables[i].setHeight(TABLE_HEIGHT);
-            tables[i].setWidth(TABLE_WIDTH);
-            tables[i].center();
-            tables[i].setX(i*TABLE_DISTANCE);
-        }
-
-
-
-        int currentTableLevelsNumber =  (int) Math.ceil(levelsAmount / tablesAmount);
-        h = (int)Math.floor(Math.sqrt(TABLE_HEIGHT * TABLE_WIDTH / currentTableLevelsNumber));
-        double H = Math.ceil(TABLE_HEIGHT/h) + ((TABLE_HEIGHT % h == 0) ? 0 : 1);
-        double W = currentTableLevelsNumber/H;
-        int currentLevel = 0;
-
-        for (int i = 0; i < tablesAmount; i++) {
-            currentLevel = fillTable(H,W,currentLevel,currentTableLevelsNumber,tables[i]);
-        }
-
-
-        bottomTable = new Table();
-        bottomLables = new Label[tablesAmount];
-        bottomTable.setFillParent(true);
-        for (int i = 0; i < tablesAmount; i++) {
-            if(i == 0) bottomLables[i] = new Label("o", skin);
-            else bottomLables[i] = new Label(".", skin);
-            bottomTable.add(bottomLables[i]).pad(5);
-        }
-        bottomTable.setWidth(70);
-        bottomTable.setHeight(10);
-        bottomTable.center().bottom();
-
-
-        for (int i = 0; i < tablesAmount; i++) {
-            stage.addActor(tables[i]);
-        }
-        stage.addActor(bottomTable);
 
     }
 
