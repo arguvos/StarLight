@@ -5,6 +5,7 @@ import com.mygdx.game.actors.Block;
 import com.mygdx.game.actors.GZone;
 import com.mygdx.game.actors.Planet;
 import com.mygdx.game.actors.Star;
+import com.mygdx.game.actors.User;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class LevelInfo {
 
 	private int[][] levelArray;
 	private ArrayList<Block> blocks;
+	public User user;
 
     public LevelInfo() {
 //        planets = new ArrayList<Planet>();

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.tools.GameValues;
 
 /**
  * Created by Leo
@@ -42,7 +43,7 @@ public class StarGestureListener implements GestureDetector.GestureListener {
 
 	@Override
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
-		camera.translate(-deltaX * camera.zoom, deltaY * camera.zoom);
+		camera.translate(-deltaX * GameValues.DebugPan, deltaY * GameValues.DebugPan);
 		camera.update();
 		return false;
 	}

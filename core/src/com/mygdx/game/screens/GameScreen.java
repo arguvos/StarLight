@@ -9,6 +9,7 @@ import com.mygdx.game.StarLightGame;
 import com.mygdx.game.input.StarGestureListener;
 import com.mygdx.game.input.StarInputProcessor;
 import com.mygdx.game.input.ValuesContainer;
+import com.mygdx.game.tools.GameValues;
 import com.mygdx.game.tools.LevelBuilder;
 import com.mygdx.game.tools.LevelInfo;
 import com.mygdx.game.tools.LevelParser;
@@ -53,7 +54,8 @@ public class GameScreen extends AbstractScreen {
         levelInfo = levelParser.getLevelInfo2(1);
         levelInfo.setLevelNumber(levelNumber);
         levelBuilder = new LevelBuilder();
-        levelBuilder.buildLevel(levelInfo, gameWorld.getStage());
+//        levelBuilder.buildLevel(levelInfo, gameWorld.getStage());
+		levelBuilder.buildLevel(levelInfo, gameWorld.getWorld());
     }
 
     public void initaliseInputProcessors() {
@@ -81,6 +83,15 @@ public class GameScreen extends AbstractScreen {
 
 		//draw gui after game world
 		super.renderWithClean(delta, false);
+//		levelInfo.user.getBody().setLinearVelocity(
+//				Gdx.input.getAccelerometerY() * GameValues.GravityMultiplexer,
+//				-Gdx.input.getAccelerometerX() * GameValues.GravityMultiplexer);
+		levelInfo.user.getBody().applyForceToCenter(
+				Gdx.input.getAccelerometerY() * GameValues.GravityMultiplexer,
+				-Gdx.input.getAccelerometerX() * GameValues.GravityMultiplexer,
+				true
+		);
+//		Gdx.app.log("Gdx.input.getAccelerometerX()", String.valueOf(Gdx.input.getAccelerometerX()));
     }
 
     @Override
