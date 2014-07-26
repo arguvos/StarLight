@@ -10,4 +10,5 @@ public class GameNames {
 	public static final String StarPath = "Resources/sun$.png";
 	public static final String PlanetPath = "Resources/planet$.png";
 	public static final String BlockPath = "Resources/block$.png";
+	public static final String PlayerPath = "Resources/player.png";
 }

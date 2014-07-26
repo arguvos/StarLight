@@ -10,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.objects.Block;
 import com.mygdx.game.screens.AbstractScreen;
+import com.mygdx.game.tools.LevelInfo;
 
 /**
  * Created by Leo
@@ -25,14 +27,24 @@ public class GameWorld{
 	private World boxWorld;
 	private Box2DDebugRenderer debugRenderer;
 
+	private LevelInfo levelInfo;
+
 	public GameWorld() {
 		batch = new SpriteBatch();
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, AbstractScreen.CAMERA_WIDTH * 0.05f,  AbstractScreen.CAMERA_HEIGHT * 0.05f);
+		camera.setToOrtho(false, AbstractScreen.CAMERA_WIDTH, AbstractScreen.CAMERA_HEIGHT);
 		viewport = new ExtendViewport(10, 10, camera);
 		this.stage = new Stage(viewport);
 		boxWorld = new World(new Vector2(0, 0), true);
 		debugRenderer = new Box2DDebugRenderer();
+	}
+
+	public LevelInfo getLevelInfo() {
+		return levelInfo;
+	}
+
+	public void setLevelInfo(LevelInfo levelInfo) {
+		this.levelInfo = levelInfo;
 	}
 
 	public Stage getStage() {
@@ -49,9 +61,13 @@ public class GameWorld{
 
 	public void render(float delta) {
 		stage.act(delta);
-		batch.setProjectionMatrix(camera.view);
+		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		stage.draw();
+//		stage.draw();
+		levelInfo.player.render(batch);
+		for(Block b : levelInfo.getBlocks()) {
+			b.render(batch);
+		}
 		batch.end();
 
 		debugRenderer.render(boxWorld, camera.combined);

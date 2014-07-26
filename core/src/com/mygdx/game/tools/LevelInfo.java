@@ -1,11 +1,11 @@
 package com.mygdx.game.tools;
 
 import com.mygdx.game.actors.Ballista;
-import com.mygdx.game.actors.Block;
 import com.mygdx.game.actors.GZone;
 import com.mygdx.game.actors.Planet;
 import com.mygdx.game.actors.Star;
-import com.mygdx.game.actors.User;
+import com.mygdx.game.objects.Block;
+import com.mygdx.game.objects.Player;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class LevelInfo {
 
 	private int[][] levelArray;
 	private ArrayList<Block> blocks;
-	public User user;
+	public Player player;
 
     public LevelInfo() {
 //        planets = new ArrayList<Planet>();

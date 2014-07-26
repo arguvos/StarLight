@@ -24,8 +24,7 @@ import com.mygdx.game.tools.Setting;
 
 public abstract class AbstractScreen implements Screen {
 
-    public static final int CAMERA_WIDTH = 1000, CAMERA_HEIGHT = 1000;
-
+    public static final int CAMERA_WIDTH = 640, CAMERA_HEIGHT = 480;
 
     protected final StarLightGame game;
     protected final Stage stage;
@@ -37,7 +36,6 @@ public abstract class AbstractScreen implements Screen {
     private CheckBox chBxMusic;
     private TextButton btnPause;
     private float defPosX, defPosY;
-
 
     public AbstractScreen(final StarLightGame game) {
         this.game = game;

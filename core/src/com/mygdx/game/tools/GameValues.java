@@ -14,4 +14,9 @@ public class GameValues {
 	public static final int BlockDistance = 5;
 
 	public static final int GravityMultiplexer = 200;
+
+	public static final float PPM = 1;
+
+	public static final float playerWidth = 4.4f;
+	public static final float playerHeight = 4.4f;
 }

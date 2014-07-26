@@ -18,7 +18,6 @@ import com.mygdx.game.tools.LevelParser;
 public class GameScreen extends AbstractScreen {
 
     private LevelParser levelParser;
-    private LevelInfo levelInfo;
     private LevelBuilder levelBuilder;
 
     private InputMultiplexer inputMultiplexer;
@@ -51,11 +50,10 @@ public class GameScreen extends AbstractScreen {
 		initaliseInputProcessors();
 
         levelParser = new LevelParser();
-        levelInfo = levelParser.getLevelInfo2(1);
-        levelInfo.setLevelNumber(levelNumber);
+		gameWorld.setLevelInfo(levelParser.getLevelInfo2(1));
+		gameWorld.getLevelInfo().setLevelNumber(levelNumber);
         levelBuilder = new LevelBuilder();
-//        levelBuilder.buildLevel(levelInfo, gameWorld.getStage());
-		levelBuilder.buildLevel(levelInfo, gameWorld);
+		levelBuilder.buildLevel(gameWorld.getLevelInfo(), gameWorld);
     }
 
     public void initaliseInputProcessors() {
@@ -86,7 +84,7 @@ public class GameScreen extends AbstractScreen {
 //		levelInfo.user.getBody().setLinearVelocity(
 //				Gdx.input.getAccelerometerY() * GameValues.GravityMultiplexer,
 //				-Gdx.input.getAccelerometerX() * GameValues.GravityMultiplexer);
-		levelInfo.user.getBody().applyForceToCenter(
+		gameWorld.getLevelInfo().player.getBody().applyForceToCenter(
 				Gdx.input.getAccelerometerY() * GameValues.GravityMultiplexer,
 				-Gdx.input.getAccelerometerX() * GameValues.GravityMultiplexer,
 				true
