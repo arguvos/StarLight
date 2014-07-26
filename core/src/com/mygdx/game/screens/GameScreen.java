@@ -55,7 +55,7 @@ public class GameScreen extends AbstractScreen {
         levelInfo.setLevelNumber(levelNumber);
         levelBuilder = new LevelBuilder();
 //        levelBuilder.buildLevel(levelInfo, gameWorld.getStage());
-		levelBuilder.buildLevel(levelInfo, gameWorld.getWorld());
+		levelBuilder.buildLevel(levelInfo, gameWorld);
     }
 
     public void initaliseInputProcessors() {
