@@ -11,8 +11,11 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.objects.Block;
+import com.mygdx.game.objects.Coin;
 import com.mygdx.game.screens.AbstractScreen;
 import com.mygdx.game.tools.LevelInfo;
+
+import java.util.Iterator;
 
 /**
  * Created by Leo
@@ -37,6 +40,7 @@ public class GameWorld{
 		this.stage = new Stage(viewport);
 		boxWorld = new World(new Vector2(0, 0), true);
 		debugRenderer = new Box2DDebugRenderer();
+        boxWorld.setContactListener(new GameContactListener(boxWorld));
 	}
 
 	public LevelInfo getLevelInfo() {
@@ -68,6 +72,16 @@ public class GameWorld{
 		for(Block b : levelInfo.getBlocks()) {
 			b.render(batch);
 		}
+
+
+        Iterator<Coin> coinsIterator =  levelInfo.getCoins().iterator();
+        while ( coinsIterator.hasNext() ) {
+            Coin c = coinsIterator.next();
+             if (  c.getBody().getUserData() != null )
+                c.render(batch);
+             else
+                 coinsIterator.remove();
+        }
 		batch.end();
 
 		debugRenderer.render(boxWorld, camera.combined);

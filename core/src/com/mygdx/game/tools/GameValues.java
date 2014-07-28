@@ -19,4 +19,11 @@ public class GameValues {
 
 	public static final float playerWidth = 4.4f;
 	public static final float playerHeight = 4.4f;
+
+    public static final float coinWidth = 2f;
+    public static final float coinHeight = 2f;
+    public static final float coinRadius = 1f;
+
+
+
 }

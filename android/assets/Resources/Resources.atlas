@@ -1,27 +1,68 @@
 
 Resources.png
-size: 854,904
+size: 904,985
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 ballista1
   rotate: false
-  xy: 804, 854
+  xy: 2, 2
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
+block1
+  rotate: false
+  xy: 804, 885
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+block2
+  rotate: false
+  xy: 132, 83
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 2, 54
+  size: 128, 129
+  orig: 128, 129
+  offset: 0, 0
+  index: -1
 planet1
   rotate: false
-  xy: 2, 104
+  xy: 2, 185
   size: 800, 800
   orig: 800, 800
   offset: 0, 0
   index: -1
 sun1
   rotate: false
-  xy: 2, 2
+  xy: 804, 783
   size: 100, 100
   orig: 100, 100
+  offset: 0, 0
+  index: -1
+
+Resources2.png
+size: 802,802
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+player
+  rotate: false
+  xy: 2, 2
+  size: 403, 398
+  orig: 403, 398
+  offset: 0, 0
+  index: -1
+wall
+  rotate: false
+  xy: 2, 402
+  size: 800, 400
+  orig: 800, 400
   offset: 0, 0
   index: -1

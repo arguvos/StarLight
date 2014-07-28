@@ -21,6 +21,8 @@ public class Player extends AbstractGameObject {
 		sprite = new Sprite(texture);
 		width = GameValues.BlockDistance * 0.8f; //GameValues.playerWidth;
 		height = GameValues.BlockDistance * 0.8f; //GameValues.playerHeight;
+        body.setUserData("player");
 		textureRegion = new TextureRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
+        String a = (String)body.getUserData();
 	}
 }

@@ -11,6 +11,7 @@ import com.mygdx.game.actors.Planet;
 import com.mygdx.game.actors.Star;
 
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 /**
  * Created by Leo on 28.06.2014.
@@ -94,21 +95,21 @@ public class LevelParser {
         return null;
 	}
 
-	public LevelInfo getLevelInfo2(int level) {
-		FileHandle file = Gdx.files.internal(GameNames.LevelTxtPath
-				.replace("$", String.valueOf(level)));
-		String text = file.readString();
-		String[] line = text.split("\r\n");
-		int w = line[0].length();
-		int h = line.length;
-		int[][] levelArray = new int[w][h];
-		for(int j = 0; j < h; j++)
-			for(int i = 0; i < w; i++)
-				levelArray[i][j] = line[j].charAt(i) - '0';
+    public LevelInfo getLevelInfo2(int level) {
+        FileHandle file = Gdx.files.internal(GameNames.LevelTxtPath
+                .replace("$", String.valueOf(level)));
+        String text = file.readString();
+        String[] line = text.split("\r\n|\n");
+        int w = line[0].length();
+        int h = line.length;
+        int[][] levelArray = new int[w][h];
+        for(int j = 0; j < h; j++)
+            for(int i = 0; i < w; i++)
+                levelArray[i][j] = line[j].charAt(i) - '0';
 
-		LevelInfo levelInfo = new LevelInfo();
-		levelInfo.setLevelArray(levelArray);
+        LevelInfo levelInfo = new LevelInfo();
+        levelInfo.setLevelArray(levelArray);
 
-		return levelInfo;
-	}
+        return levelInfo;
+    }
 }

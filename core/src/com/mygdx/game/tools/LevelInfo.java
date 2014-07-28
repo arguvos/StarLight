@@ -5,6 +5,7 @@ import com.mygdx.game.actors.GZone;
 import com.mygdx.game.actors.Planet;
 import com.mygdx.game.actors.Star;
 import com.mygdx.game.objects.Block;
+import com.mygdx.game.objects.Coin;
 import com.mygdx.game.objects.Player;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class LevelInfo {
 
 	private int[][] levelArray;
 	private ArrayList<Block> blocks;
+    private ArrayList<Coin> coins;
 	public Player player;
 
     public LevelInfo() {
@@ -33,6 +35,7 @@ public class LevelInfo {
 //        zones = new ArrayList<GZone>();
 //        ballista = new Ballista();
 		blocks = new ArrayList<Block>();
+        coins = new ArrayList<Coin>();
     }
 
 	public ArrayList<Block> getBlocks() {
@@ -47,7 +50,19 @@ public class LevelInfo {
 		this.blocks.add(block);
 	}
 
-	public void setLevelArray(int[][] levelArray) { this.levelArray = levelArray; }
+    public ArrayList<Coin> getCoins() {
+        return coins;
+    }
+
+    public void setCoins(ArrayList<Coin> coins) {
+        this.coins = coins;
+    }
+
+    public void addCoin(Coin coin) {
+        this.coins.add(coin);
+    }
+
+    public void setLevelArray(int[][] levelArray) { this.levelArray = levelArray; }
 
 	public int[][] getLevelArray() { return levelArray; }
 

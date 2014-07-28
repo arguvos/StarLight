@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.mygdx.game.GameWorld;
 import com.mygdx.game.objects.Block;
+import com.mygdx.game.objects.Coin;
 import com.mygdx.game.objects.Player;
 
 /**
@@ -21,7 +22,7 @@ public class LevelBuilder {
 		int levelArray[][] = levelInfo.getLevelArray();
 		for (int i = 0; i < levelArray.length; i++) {
 			for (int j = 0; j < levelArray[i].length; j++) {
-				if(levelArray[i][j] == 1) {
+				if(levelArray[i][j] == 1) { //block
 					BodyDef groundBodyDef = new BodyDef();
 					groundBodyDef.position.set(new Vector2(i * GameValues.BlockDistance, j * GameValues.BlockDistance));
 					Body groundBody = world.getWorld().createBody(groundBodyDef);
@@ -29,7 +30,7 @@ public class LevelBuilder {
 					groundBox.setAsBox(GameValues.BlockDistance * 0.5f, GameValues.BlockDistance * 0.5f);
 					groundBody.createFixture(groundBox, 0.0f);
 					levelInfo.addBlock(new Block(groundBody, 2));
-				} else if(levelArray[i][j] == 2) {
+				} else if(levelArray[i][j] == 2) { //player
 					BodyDef bodyDef = new BodyDef();
 					bodyDef.type = BodyDef.BodyType.DynamicBody;
 					bodyDef.position.set(new Vector2(i * GameValues.BlockDistance, j * GameValues.BlockDistance));
@@ -43,9 +44,22 @@ public class LevelBuilder {
 					fixtureDef.restitution = 0.7f;
 					body.createFixture(fixtureDef);
 
+
 					levelInfo.player = new Player(body);
 //					world.getStage().addActor(levelInfo.user);
 				}
+                else if ( levelArray[i][j] == -6 ) //coin
+                {
+                    BodyDef coinBodyDef = new BodyDef();
+                    coinBodyDef.position.set(new Vector2(i * GameValues.BlockDistance, j * GameValues.BlockDistance));
+                    Body coinBody = world.getWorld().createBody(coinBodyDef);
+                    CircleShape coin = new CircleShape();
+                    coin.setRadius(GameValues.coinRadius);
+                    FixtureDef fixtureDef = new FixtureDef();
+                    fixtureDef.shape = coin;
+                    coinBody.createFixture(fixtureDef);
+                    levelInfo.addCoin(new Coin(coinBody));
+                }
 			}
 		}
 	}

@@ -19,11 +19,11 @@ public class Block extends AbstractGameObject {
 	public Block(Body body, int type) {
 		super(body);
 		this.type = type;
-
 		Texture texture = new Texture(Gdx.files.internal(GameNames.BlockPath.replace("$", String.valueOf(type))));
 		sprite = new Sprite(texture);
 		width = GameValues.BlockDistance;
 		height = GameValues.BlockDistance;
+        body.setUserData("block");
 		textureRegion = new TextureRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
 	}
 }

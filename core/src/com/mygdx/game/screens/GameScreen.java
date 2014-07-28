@@ -48,7 +48,6 @@ public class GameScreen extends AbstractScreen {
 
 		gameWorld = new GameWorld();
 		initaliseInputProcessors();
-
         levelParser = new LevelParser();
 		gameWorld.setLevelInfo(levelParser.getLevelInfo2(1));
 		gameWorld.getLevelInfo().setLevelNumber(levelNumber);
@@ -89,7 +88,10 @@ public class GameScreen extends AbstractScreen {
 				-Gdx.input.getAccelerometerX() * GameValues.GravityMultiplexer,
 				true
 		);
-//		Gdx.app.log("Gdx.input.getAccelerometerX()", String.valueOf(Gdx.input.getAccelerometerX()));
+
+		//Gdx.app.log("Gdx.input.getAccelerometerX()", String.valueOf(Gdx.input.getAccelerometerX()));
+		//Gdx.app.log("Gdx.input.getAccelerometerY()", String.valueOf(Gdx.input.getAccelerometerY()));
+        //Gdx.app.log("player", gameWorld.getLevelInfo().player.getPosition().toString());
     }
 
     @Override
